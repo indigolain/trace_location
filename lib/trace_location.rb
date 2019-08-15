@@ -4,13 +4,7 @@ require_relative 'trace_location/collector'
 require_relative 'trace_location/config'
 require_relative 'trace_location/report'
 require_relative 'trace_location/version'
-
-begin
-  require 'rails'
-  require_relative 'trace_location/railtie'
-rescue LoadError
-  nil
-end
+require_relative 'trace_location/railtie' if defined?(::Rails::Railtie)
 
 module TraceLocation # :nodoc:
   def self.trace(options = {}, &block)
